@@ -14,7 +14,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 @EnableBatchProcessing
 public class BatchJobConfig {
-
+    //test
     @Autowired
     JobBuilderFactory jobBuilderFactory;
     @Autowired
