@@ -1,0 +1,44 @@
+#
+#spring:
+#  config:
+#    location: file:/home/mild/config/properties/batch-application.yml
+#    name : application.yml
+#  # Datasource
+#  datasource:
+#    driver-class-name: org.mariadb.jdbc.Driver
+#    url: jdbc:mariadb://0.0.0.0:0000/mild?allowMultiQueries=true
+#    username: 0
+#    password: 0
+#  # servlet
+#  servlet:
+#    multipart:
+#      file-size-threshold: 1MB
+#      location: /home/mildBatch/uploadfile
+#      max-file-size: 100MB
+#      max-request-size: 100MB
+#      enabled: true
+#  # Messages
+#  messages:
+#    #basename: file:/home/mildBatch/config/messages/message
+#    #basename: messages/message
+#    encoding: UTF-8
+#  # JPA config
+#  jpa:
+#    properties:
+#      hibernate:
+#        # 데이터베이스 방언 설정
+#        #dialect: org.hibernate.dialect.MariaDBDialect
+#        dialect: mild.batch.config.CustomMariaDialect
+#        # 하이버네이트가 실행한 SQL을 출력
+#        show_sql: true
+#        # 출력한 SQL을 보기 쉽게 정렬
+#        format_sql: true
+#        # 주석도 함께 출력
+#        use_sql_comment: true
+#  # JWT secret key
+#  jwt:
+#    secret: #
+#
+## Logging Logback config
+#logging:
+#  config: file:/home/mildBatch/config/properties/batch-logback.xml
