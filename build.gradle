@@ -31,6 +31,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     runtimeOnly 'com.h2database:h2'
     implementation 'org.jsoup:jsoup:1.14.3'
+    implementation 'mysql:mysql-connector-java'
 
     // QueryDSL
     implementation "com.querydsl:querydsl-jpa"
