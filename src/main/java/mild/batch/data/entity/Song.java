@@ -13,7 +13,8 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Song {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue
     @Column(name = "song_idx")
     private int songIdx;
 
@@ -32,5 +33,17 @@ public class Song {
 
     @Column(name = "sub_img")
     private String subImg;
+
+    @Builder
+    public Song(String title, int rank, String singer, String album, String lyrics, String mainImg, String subImg) {
+        this.title = title;
+        this.rank = rank;
+        this.singer = singer;
+        this.album = album;
+        this.lyrics = lyrics;
+        this.mainImg = mainImg;
+        this.subImg = subImg;
+    }
+
 
 }

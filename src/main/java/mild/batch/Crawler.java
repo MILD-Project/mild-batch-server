@@ -1,6 +1,7 @@
 package mild.batch;
 
 import mild.batch.data.dto.SongDto;
+import mild.batch.data.entity.Song;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -12,6 +13,60 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Crawler {
+
+    public List<Song> songList() {
+
+        List<Song> songList = new ArrayList<Song>();
+
+        try {
+            // 1. 수집 대상 URL
+            String URL = "https://www.melon.com/chart/index.htm";
+
+            // 2. Connection 생성
+            Connection conn = Jsoup.connect(URL);
+
+            // 3. HTML 파싱
+            Document doc = conn.get();
+
+            // 4. 요소 탐색
+            // 4-1. 곡 리스트 탐색
+            Elements titles = doc.select("div[class=ellipsis rank01]").select("a");
+            Elements singer = doc.select("div[class=ellipsis rank02]").select("a");
+            Elements rank   = doc.select("span[class=rank]");
+            Elements album  = doc.select("div[class=ellipsis rank03]").select("a");
+            Elements songImg  = doc.select("a[class=image_typeAll]").select("img");
+
+            rank.remove(0);
+
+            System.out.println("곡 수 : " + titles.size());
+
+            for(int i=0; i<titles.size(); i++) {
+
+                Song song = new Song(
+                        titles.get(i).text(),
+                        Integer.parseInt(rank.get(i).text()),
+                        singer.get(i).text(),
+                        album.get(i).text(),
+                        "",
+                        songImg.get(i).attr("src"),
+                        "");
+
+                songList.add(song);
+
+                System.out.println(rank.get(i).text() + "\t" + titles.get(i).text() + "\t" + singer.get(i).text() + "\t" + album.get(i).text());
+
+            }
+            System.out.println(songList.toString());
+
+
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        return songList;
+
+    }
+
     public static void main(String[] args) {
         try {
             // 1. 수집 대상 URL
